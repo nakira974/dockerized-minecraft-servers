@@ -1,3 +1,5 @@
+Please read this End-User License Agreement ("Agreement") carefully before using the Minecraft Server software ("Software") operated by lkhsoft ("us").
+
 By installing, accessing, or using the Software, you agree to be bound by the terms and conditions of this Agreement. If you do not agree to the terms and conditions of this Agreement, do not install, access, or use the Software.
 
 1. License
