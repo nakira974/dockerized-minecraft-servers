@@ -2,10 +2,18 @@ version: '3.9'
 
 services:
   minecraft_vanilla_1_20_1:
-    build: ./1.20.1
+    build: ./1.20.1/vanilla
     ports: 
       - '25565:25565'
     volumes: 
-      - './1.20.1/.map/world:/minecraft-server/world'
-      - './1.20.1/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/vanilla/.map/world:/minecraft-server/world'
+      - './1.20.1/vanilla/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/vanilla/.map/world_the_end:/minecraft-server/world_the_end'
+  minecraft_spygot_1_20_1:
+    build: ./1.20.1/spigot
+    ports:
+      - '25566:25566'
+    volumes:
+      - './1.20.1/spigot/.map/world:/minecraft-server/world'
+      - './1.20.1/spigot/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/spigot/.map/world_the_end:/minecraft-server/world_the_end'

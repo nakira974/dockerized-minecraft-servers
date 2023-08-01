@@ -1,20 +1,23 @@
+# Use the official OpenJDK 17 image as base
 FROM openjdk:17-jdk-alpine
 
+# Define the working directory
 WORKDIR /minecraft-server
 
-EXPOSE 25565
+# Expose the necessary port
+EXPOSE 25566
 
 # COPY MAP FOLDERS
-COPY ./.map/world /minecraft-server
-COPY ./.map/world_nether /minecraft-server
-COPY ./.map/world_the_end /minecraft-server
+COPY .map/world /minecraft-server
+COPY .map/world_nether /minecraft-server
+COPY .map/world_the_end /minecraft-server
 
 # SERVER PROPERTIES
-COPY ./server.properties /minecraft-server
-COPY ./whitelist.json /minecraft-server
+COPY server.properties /minecraft-server
+COPY whitelist.json /minecraft-server
 
 # COPY END USER LICENCE AGREEMENT
-COPY ./eula.txt /minecraft-server
+COPY eula.txt /minecraft-server
 
 # ENABLE END USER LICENCE AGREEMENT IN THE SERVER
 RUN echo "eula=true" > eula.txt
