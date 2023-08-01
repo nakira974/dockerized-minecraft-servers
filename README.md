@@ -6,3 +6,5 @@ You only have to create a folder called '.map' or else in your version folder, w
 - 'world',
 - 'world_nether'
 - world_the_end'
+
+If these folders aren't created the server'll create a new one for each missing world.
