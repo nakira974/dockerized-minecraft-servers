@@ -10,6 +10,7 @@ COPY ./.map/world_nether /minecraft-server
 COPY ./.map/world_the_end /minecraft-server
 
 # SERVER PROPERTIES
+COPY ./server.properties /minecraft-server
 COPY ./whitelist.json /minecraft-server
 
 # COPY END USER LICENCE AGREEMENT
