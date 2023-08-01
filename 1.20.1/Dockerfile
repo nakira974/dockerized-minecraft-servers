@@ -8,7 +8,9 @@ EXPOSE 25565
 COPY ./.map/world /minecraft-server
 COPY ./.map/world_nether /minecraft-server
 COPY ./.map/world_the_end /minecraft-server
-COPY ./whitelist.json
+
+# SERVER PROPERTIES
+COPY ./whitelist.json /minecraft-server
 
 # COPY END USER LICENCE AGREEMENT
 COPY ./eula.txt /minecraft-server
