@@ -7,4 +7,4 @@ You only have to create a folder called '.map' or else in your version folder, w
 - 'world_nether'
 - world_the_end'
 
-If these folders aren't created the server'll create a new one for each missing world.
+If these folders aren't created, servers' Dockerfile won't build, so make sure at least you created empty 3 empty folders.
