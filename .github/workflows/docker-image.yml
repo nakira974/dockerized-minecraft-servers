@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create vanilla folders
-      run: mkdir -p ./1.20.1/vanilla/.map/world | mkdir -p ./1.20.1/.map/vanilla/world_nether | mkdir -p ./1.20.1/.map/vanilla/world_the_end
+      run: mkdir -p ./1.20.1/vanilla/.map/world | mkdir -p ./1.20.1/vanilla/.map/world_nether | mkdir -p ./1.20.1/vanilla/.map/world_the_end
     - name: Create spigot folders
-      run: mkdir -p ./1.20.1/spigot/.map/world | mkdir -p ./1.20.1/.map/spigot/world_nether | mkdir -p ./1.20.1/.map/spigot/world_the_end
+      run: mkdir -p ./1.20.1/spigot/.map/world | mkdir -p ./1.20.1/spigot/.map/world_nether | mkdir -p ./1.20.1/spigot/.map/world_the_end
     - name: Compose Minecraft servers
       run: docker compose -p minecraft-servers up -d
