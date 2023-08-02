@@ -1,19 +1,59 @@
 version: '3.9'
 
+networks:
+  # Internal private servers network
+  private:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.0/29
+
+  # Internal LavaLawsLess public server network
+  public_1:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/30
+
+# Minecraft Servers
 services:
+  # Private vanilla server
   minecraft_vanilla_1_20_1:
-    build: ./1.20.1/vanilla
+    build: ./1.20.1/private/vanilla
     ports: 
       - '25565:25565'
     volumes: 
-      - './1.20.1/vanilla/.map/world:/minecraft-server/world'
-      - './1.20.1/vanilla/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/vanilla/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/private/vanilla/.map/world:/minecraft-server/world'
+      - './1.20.1/private/vanilla/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/private/vanilla/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/private/vanilla/whitelist.json:/minecraft-server/whitelist.json'
+    networks:
+      private:
+        ipv4_address: 172.16.0.2
+
+  # Private Test Spigot server
   minecraft_spygot_1_20_1:
-    build: ./1.20.1/spigot
+    build: ./1.20.1/private/spigot
     ports:
       - '25566:25566'
     volumes:
-      - './1.20.1/spigot/.map/world:/minecraft-server/world'
-      - './1.20.1/spigot/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/spigot/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/spigot/private/.map/world:/minecraft-server/world'
+      - './1.20.1/spigot/private/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/spigot/private/.map/world_the_end:/minecraft-server/world_the_end'
+    networks:
+      private:
+        ipv4_address: 172.16.0.3
+
+# Public Spigot API server
+  lavalawless_vanilla_1_20_1:
+    build: ./1.20.1/public/lavalawless.lkh.coffee
+    ports: 
+      - '25567:25567'
+    volumes:
+      - './1.20.1/public/lavalawless.lkh.coffee/.map/world:/minecraft-server/world'
+      - './1.20.1/public/lavalawless.lkh.coffee/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/public/lavalawless.lkh.coffee/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/public/lavalawless.lkh.coffee/blacklist.json:/minecraft-server/blacklist.json'
+    networks:
+      public_1:
+        ipv4_address: 192.168.0.2

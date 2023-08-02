@@ -10,7 +10,11 @@ EXPOSE 25566
 # Copy over server properties and world data
 COPY ./server.properties /spigot-server/
 COPY ./whitelist.json /spigot-server/
-COPY ./.map/ /spigot-server/
+
+# Copy map folders
+COPY ./.map/world /spigot-server/world
+COPY ./.map/world_nether /spigot-server/world_nether
+COPY ./.map/world_the_end /spigot-server/world_the_end
 
 # Copy EULA 
 COPY ./eula.txt /spigot-server/
