@@ -14,9 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Create vanilla folders
-      run: mkdir -p ./1.20.1/vanilla/.map/world | mkdir -p ./1.20.1/vanilla/.map/world_nether | mkdir -p ./1.20.1/vanilla/.map/world_the_end
-    - name: Create spigot folders
-      run: mkdir -p ./1.20.1/spigot/.map/world | mkdir -p ./1.20.1/spigot/.map/world_nether | mkdir -p ./1.20.1/spigot/.map/world_the_end
+    - name: Create private vanilla folders
+      run: mkdir -p ./1.20.1/private/vanilla/.map/world | mkdir -p ./1.20.1/private/vanilla/.map/world_nether | mkdir -p ./1.20.1/private/vanilla/.map/world_the_end
+    - name: Create private spigot folders
+      run: mkdir -p ./1.20.1/private/spigot/.map/world | mkdir -p ./1.20.1/private/spigot/.map/world_nether | mkdir -p ./1.20.1/private/spigot/.map/world_the_end
+    - name: Create public anarchy.lavalawsless.com folders
+      run: mkdir -p ./1.20.1/public/anarchy.lavalawsless.com/.map/world | mkdir -p ./1.20.1/public/anarchy.lavalawsless.com/.map/world_nether | mkdir -p ./1.20.1/public/anarchy.lavalawsless.com/.map/world_the_end
     - name: Compose Minecraft servers
       run: docker compose -p minecraft-servers up -d
