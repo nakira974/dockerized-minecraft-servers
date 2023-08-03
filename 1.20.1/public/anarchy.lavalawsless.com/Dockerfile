@@ -5,7 +5,7 @@ FROM openjdk:19-jdk-alpine
 WORKDIR /spigot-server
 
 # Expose the necessary port
-EXPOSE 25566
+EXPOSE 25567
 
 # Download BuildTools.jar to build spigot server
 ADD https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar /temp/

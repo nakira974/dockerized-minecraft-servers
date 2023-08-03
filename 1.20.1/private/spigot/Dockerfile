@@ -10,7 +10,7 @@ ADD https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact
 # Install git & build spigot server
 RUN apk add --no-cache git \
     && java -jar /temp/BuildTools.jar --rev latest \
-    && mv spigot-*.jar spigot.jar \
+    && mv ./spigot-*.jar spigot.jar \
     && rm -rf /temp
 
 # Expose the necessary port
@@ -29,4 +29,4 @@ COPY ./.map/world_the_end /spigot-server/world_the_end
 RUN echo "eula=true" > eula.txt
 
 # Start the Spigot server
-ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "spigot.jar", "nogui"]
+ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "spigot-1.20.1.jar", "nogui"]

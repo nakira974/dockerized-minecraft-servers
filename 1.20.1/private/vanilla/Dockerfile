@@ -5,7 +5,7 @@ FROM openjdk:19-jdk-alpine
 WORKDIR /minecraft-server
 
 # Expose the necessary port
-EXPOSE 25566
+EXPOSE 25565
 
 # COPY MAP FOLDERS
 COPY .map/world /minecraft-server

@@ -36,9 +36,11 @@ services:
   minecraft_spygot_1_20_1:
     build: ./1.20.1/private/spigot
     volumes:
-      - './1.20.1/spigot/private/.map/world:/minecraft-server/world'
-      - './1.20.1/spigot/private/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/spigot/private/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/private/spigot/.map/world:/minecraft-server/world'
+      - './1.20.1/private/spigot/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/private/spigot/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/private/spigot/whitelist.json:/minecraft-server/whitelist.json'
+      - './1.20.1/private/spigot/blacklist.json:/minecraft-server/blacklist.json'
     networks:
       private:
         ipv4_address: 172.16.0.3
