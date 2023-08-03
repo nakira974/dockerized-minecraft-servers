@@ -1,13 +1,6 @@
 version: '3.9'
 
 networks:
-  # Minecraft Servers router network
-  proxy_network:
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.1.0/29
-
   # Internal private servers network
   private:
     ipam:
