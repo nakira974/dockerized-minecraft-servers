@@ -1,5 +1,5 @@
 # Use the official OpenJDK 17 image as base
-FROM openjdk:17-jdk-alpine
+FROM openjdk:19-jdk-alpine
 
 # Define the working directory
 WORKDIR /minecraft-server

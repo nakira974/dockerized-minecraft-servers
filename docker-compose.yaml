@@ -45,8 +45,6 @@ services:
   # Private vanilla server
   minecraft_vanilla_1_20_1:
     build: ./1.20.1/private/vanilla
-    ports: 
-      - '25565:25565'
     volumes: 
       - './1.20.1/private/vanilla/.map/world:/minecraft-server/world'
       - './1.20.1/private/vanilla/.map/world_nether:/minecraft-server/world_nether'
@@ -55,12 +53,14 @@ services:
     networks:
       private:
         ipv4_address: 172.16.0.2
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lavalawless.rule=Host(`minecraft.vanilla.lkh.coffee`)"
+      - "traefik.http.services.lavalawless.loadbalancer.server.port=25565"
 
   # Private Test Spigot server
   minecraft_spygot_1_20_1:
     build: ./1.20.1/private/spigot
-    ports:
-      - '25566:25566'
     volumes:
       - './1.20.1/spigot/private/.map/world:/minecraft-server/world'
       - './1.20.1/spigot/private/.map/world_nether:/minecraft-server/world_nether'
@@ -68,12 +68,14 @@ services:
     networks:
       private:
         ipv4_address: 172.16.0.3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lavalawless.rule=Host(`minecraft.spigot.lkh.coffee`)"
+      - "traefik.http.services.lavalawless.loadbalancer.server.port=25566"
 
 # Public Spigot API server
   lavalawless_vanilla_1_20_1:
     build: ./1.20.1/public/lavalawless.lkh.coffee
-    ports: 
-      - '25567:25567'
     volumes:
       - './1.20.1/public/lavalawless.lkh.coffee/.map/world:/minecraft-server/world'
       - './1.20.1/public/lavalawless.lkh.coffee/.map/world_nether:/minecraft-server/world_nether'
@@ -85,5 +87,5 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.lavalawless.rule=Host(`lavalawsless.lkh.coffee`)"
+      - "traefik.http.routers.lavalawless.rule=Host(`anarchy.lavalawsless.com`)"
       - "traefik.http.services.lavalawless.loadbalancer.server.port=25567"
