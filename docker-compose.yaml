@@ -77,10 +77,10 @@ services:
   lavalawless_vanilla_1_20_1:
     build: 1.20.1/public/anarchy.lavalawsless.com
     volumes:
-      - './1.20.1/public/lavalawless.lkh.coffee/.map/world:/minecraft-server/world'
-      - './1.20.1/public/lavalawless.lkh.coffee/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/public/lavalawless.lkh.coffee/.map/world_the_end:/minecraft-server/world_the_end'
-      - './1.20.1/public/lavalawless.lkh.coffee/blacklist.json:/minecraft-server/blacklist.json'
+      - './1.20.1/public/anarchy.lavalawless.com/.map/world:/minecraft-server/world'
+      - './1.20.1/public/anarchy.lavalawless.com/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/public/anarchy.lavalawless.com/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/public/anarchy.lavalawless.com/blacklist.json:/minecraft-server/blacklist.json'
     networks:
       public_1:
         ipv4_address: 192.168.0.2
