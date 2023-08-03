@@ -46,7 +46,7 @@ services:
       - "25566:25566"
 
 # Public Spigot API server
-  lavalawless_vanilla_1_20_1:
+  lavalawless_spigot_1_20_1:
     build: 1.20.1/public/anarchy.lavalawsless.com
     volumes:
       - './1.20.1/public/anarchy.lavalawless.com/.map/world:/minecraft-server/world'
