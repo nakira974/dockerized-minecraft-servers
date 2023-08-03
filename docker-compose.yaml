@@ -1,6 +1,13 @@
 version: '3.9'
 
 networks:
+  # Minecraft Servers router network
+  proxy_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/29
+
   # Internal private servers network
   private:
     ipam:
@@ -17,6 +24,24 @@ networks:
 
 # Minecraft Servers
 services:
+  # Minecraft Servers router
+  traefik_servers_proxy:
+    image: "traefik:v2.5"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "9190:80"
+      - "9191:8080" # The Web UI (enabled by --api.insecure=true)
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.toml:/etc/traefik/traefik.toml"
+    networks:
+      proxy_network:
+        ipv4_address: 192.168.1.2
+
   # Private vanilla server
   minecraft_vanilla_1_20_1:
     build: ./1.20.1/private/vanilla
@@ -57,3 +82,8 @@ services:
     networks:
       public_1:
         ipv4_address: 192.168.0.2
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lavalawless.rule=Host(`lavalawsless.lkh.coffee`)"
+      - "traefik.http.services.lavalawless.loadbalancer.server.port=25567"
