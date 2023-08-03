@@ -75,7 +75,7 @@ services:
 
 # Public Spigot API server
   lavalawless_vanilla_1_20_1:
-    build: ./1.20.1/public/lavalawless.lkh.coffee
+    build: 1.20.1/public/anarchy.lavalawsless.com
     volumes:
       - './1.20.1/public/lavalawless.lkh.coffee/.map/world:/minecraft-server/world'
       - './1.20.1/public/lavalawless.lkh.coffee/.map/world_nether:/minecraft-server/world_nether'
