@@ -24,23 +24,6 @@ networks:
 
 # Minecraft Servers
 services:
-  # Minecraft Servers router
-  traefik_servers_proxy:
-    image: "traefik:v2.5"
-    command:
-      - "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
-    ports:
-      - "9190:80"
-      - "9191:8080" # The Web UI (enabled by --api.insecure=true)
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./traefik.toml:/etc/traefik/traefik.toml"
-    networks:
-      proxy_network:
-        ipv4_address: 192.168.1.2
 
   # Private vanilla server
   minecraft_vanilla_1_20_1:
@@ -53,10 +36,8 @@ services:
     networks:
       private:
         ipv4_address: 172.16.0.2
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.lavalawless.rule=Host(`minecraft.vanilla.lkh.coffee`)"
-      - "traefik.http.services.lavalawless.loadbalancer.server.port=25565"
+    ports:
+      - "25566:25566"
 
   # Private Test Spigot server
   minecraft_spygot_1_20_1:
@@ -68,10 +49,8 @@ services:
     networks:
       private:
         ipv4_address: 172.16.0.3
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.lavalawless.rule=Host(`minecraft.spigot.lkh.coffee`)"
-      - "traefik.http.services.lavalawless.loadbalancer.server.port=25566"
+    ports:
+      - "25566:25566"
 
 # Public Spigot API server
   lavalawless_vanilla_1_20_1:
@@ -84,8 +63,5 @@ services:
     networks:
       public_1:
         ipv4_address: 192.168.0.2
-
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.lavalawless.rule=Host(`anarchy.lavalawsless.com`)"
-      - "traefik.http.services.lavalawless.loadbalancer.server.port=25567"
+    ports:
+      - "25567:25567"
