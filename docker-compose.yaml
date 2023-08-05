@@ -27,25 +27,23 @@ services:
       - './1.20.1/private/vanilla/.map/world_the_end:/minecraft-server/world_the_end'
       - './1.20.1/private/vanilla/whitelist.json:/minecraft-server/whitelist.json'
     networks:
-      private:
-        ipv4_address: 172.16.0.2
+      - private
     ports:
       - "25566:25566"
 
-  # Private Test Spigot server
-  minecraft_spygot_1_20_1:
-    build: ./1.20.1/private/spigot
-    volumes:
-      - './1.20.1/private/spigot/.map/world:/minecraft-server/world'
-      - './1.20.1/private/spigot/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/private/spigot/.map/world_the_end:/minecraft-server/world_the_end'
-      - './1.20.1/private/spigot/whitelist.json:/minecraft-server/whitelist.json'
-      - './1.20.1/private/spigot/blacklist.json:/minecraft-server/blacklist.json'
-    networks:
-      private:
-        ipv4_address: 172.16.0.3
-    ports:
-      - "25566:25566"
+# Private Test Spigot server
+ # minecraft_spigot_1_20_1:
+ #   build: ./1.20.1/private/spigot
+ #   volumes:
+ #     - './1.20.1/private/spigot/.map/world:/minecraft-server/world'
+ #     - './1.20.1/private/spigot/.map/world_nether:/minecraft-server/world_nether'
+ #     - './1.20.1/private/spigot/.map/world_the_end:/minecraft-server/world_the_end'
+ #     - './1.20.1/private/spigot/whitelist.json:/minecraft-server/whitelist.json'
+ #     - './1.20.1/private/spigot/blacklist.json:/minecraft-server/blacklist.json'
+ #   networks:
+ #     - private
+ #   ports:
+ #     - "25566:25566"
 
 # Public Spigot API server
   lavalawless_spigot_1_20_1:
@@ -56,7 +54,6 @@ services:
       - './1.20.1/public/anarchy.lavalawless.com/.map/world_the_end:/minecraft-server/world_the_end'
       - './1.20.1/public/anarchy.lavalawless.com/blacklist.json:/minecraft-server/blacklist.json'
     networks:
-      public_1:
-        ipv4_address: 192.168.0.2
+      - public_1
     ports:
       - "25567:25567"

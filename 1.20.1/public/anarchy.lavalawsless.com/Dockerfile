@@ -13,8 +13,8 @@ ADD https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact
 # Install git & build spigot server
 RUN apk add --no-cache git \
     && java -jar /temp/BuildTools.jar --rev latest \
-    && mv spigot-*.jar spigot.jar \
     && rm -rf /temp \
+
 
 # Copy over server properties and world data
 COPY ./server.properties /spigot-server/
@@ -31,7 +31,7 @@ COPY ./eula.txt /spigot-server/
 # Accept Minecraft EULA
 RUN echo "eula=true" > eula.txt
 
-
+RUN cd /spigot-server
 
 # Start the Spigot server
-ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "spigot.jar", "nogui"]
+ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "./spigot-1.20.1.jar", "nogui"]
