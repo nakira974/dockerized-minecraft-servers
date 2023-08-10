@@ -5,7 +5,7 @@ FROM openjdk:19-jdk-alpine
 WORKDIR /spigot-server
 
 # Expose the necessary port
-EXPOSE 25567
+EXPOSE 25565
 
 # Download BuildTools.jar to build spigot server
 ADD https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar /temp/
@@ -13,12 +13,13 @@ ADD https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact
 # Install git & build spigot server
 RUN apk add --no-cache git \
     && java -jar /temp/BuildTools.jar --rev latest \
-    && rm -rf /temp \
 
 
 # Copy over server properties and world data
 COPY ./server.properties /spigot-server/
 COPY blacklist.json /spigot-server/
+COPY ops.json /spigot-server/
+
 
 COPY ./.map/world /spigot-server/world
 COPY ./.map/world_nether /spigot-server/world_nether
@@ -31,7 +32,7 @@ COPY ./eula.txt /spigot-server/
 # Accept Minecraft EULA
 RUN echo "eula=true" > eula.txt
 
-RUN cd /spigot-server
+RUN apk add screen
 
 # Start the Spigot server
-ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "./spigot-1.20.1.jar", "nogui"]
+ENTRYPOINT screen -S MinecraftServer -dm java -Xmx4096M -Xms512M -jar /tmp/spigot-1.20.1.jar nogui

@@ -11,7 +11,7 @@ ADD https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact
 RUN apk add --no-cache git \
     && java -jar /temp/BuildTools.jar --rev latest \
     && mv ./spigot-*.jar spigot.jar \
-    && rm -rf /temp
+
 
 # Expose the necessary port
 EXPOSE 25566
@@ -19,6 +19,7 @@ EXPOSE 25566
 # Copy over server properties
 COPY ./server.properties /spigot-server/
 COPY ./whitelist.json /spigot-server/
+COPY ops.json /spigot-server/
 
 # Copy map folders
 COPY ./.map/world /spigot-server/world
@@ -28,5 +29,7 @@ COPY ./.map/world_the_end /spigot-server/world_the_end
 # Accept Minecraft EULA
 RUN echo "eula=true" > eula.txt
 
+RUN apk add screen
+
 # Start the Spigot server
-ENTRYPOINT ["java", "-Xmx1024M", "-Xms1024M", "-jar", "spigot-1.20.1.jar", "nogui"]
+ENTRYPOINT screen -S MinecraftServer -dm java -Xmx1024M -Xms512M -jar /tmp/spigot-1.20.1.jar nogui

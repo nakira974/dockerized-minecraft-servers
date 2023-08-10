@@ -18,32 +18,20 @@ networks:
 # Minecraft Servers
 services:
 
-  # Private vanilla server
-  minecraft_vanilla_1_20_1:
-    build: ./1.20.1/private/vanilla
-    volumes: 
-      - './1.20.1/private/vanilla/.map/world:/minecraft-server/world'
-      - './1.20.1/private/vanilla/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/private/vanilla/.map/world_the_end:/minecraft-server/world_the_end'
-      - './1.20.1/private/vanilla/whitelist.json:/minecraft-server/whitelist.json'
+# Private Test Spigot server
+  test_spigot_1_20_1:
+    build: ./1.20.1/private/spigot
+    volumes:
+      - './1.20.1/private/spigot/.map/world:/minecraft-server/world'
+      - './1.20.1/private/spigot/.map/world_nether:/minecraft-server/world_nether'
+      - './1.20.1/private/spigot/.map/world_the_end:/minecraft-server/world_the_end'
+      - './1.20.1/private/spigot/whitelist.json:/minecraft-server/whitelist.json'
+      - './1.20.1/private/spigot/blacklist.json:/minecraft-server/blacklist.json'
+      - './1.20.1/private/spigot/ops.json:/minecraft-server/ops.json'
     networks:
       - private
     ports:
       - "25566:25566"
-
-# Private Test Spigot server
- # minecraft_spigot_1_20_1:
- #   build: ./1.20.1/private/spigot
- #   volumes:
- #     - './1.20.1/private/spigot/.map/world:/minecraft-server/world'
- #     - './1.20.1/private/spigot/.map/world_nether:/minecraft-server/world_nether'
- #     - './1.20.1/private/spigot/.map/world_the_end:/minecraft-server/world_the_end'
- #     - './1.20.1/private/spigot/whitelist.json:/minecraft-server/whitelist.json'
- #     - './1.20.1/private/spigot/blacklist.json:/minecraft-server/blacklist.json'
- #   networks:
- #     - private
- #   ports:
- #     - "25566:25566"
 
 # Public Spigot API server
   lavalawless_spigot_1_20_1:
@@ -53,7 +41,8 @@ services:
       - './1.20.1/public/anarchy.lavalawless.com/.map/world_nether:/minecraft-server/world_nether'
       - './1.20.1/public/anarchy.lavalawless.com/.map/world_the_end:/minecraft-server/world_the_end'
       - './1.20.1/public/anarchy.lavalawless.com/blacklist.json:/minecraft-server/blacklist.json'
+      - './1.20.1/public/anarchy.lavalawless.com/ops.json:/minecraft-server/ops.json'
     networks:
       - public_1
     ports:
-      - "25567:25567"
+      - "25565:25565"
