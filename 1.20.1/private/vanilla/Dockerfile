@@ -8,9 +8,9 @@ WORKDIR /minecraft-server
 EXPOSE 25565
 
 # COPY MAP FOLDERS
-COPY .map/world /minecraft-server
-COPY .map/world_nether /minecraft-server
-COPY .map/world_the_end /minecraft-server
+COPY ../spigot/.map/world /minecraft-server
+COPY ../spigot/.map/world_nether /minecraft-server
+COPY ../spigot/.map/world_the_end /minecraft-server
 
 # SERVER PROPERTIES
 COPY server.properties /minecraft-server
