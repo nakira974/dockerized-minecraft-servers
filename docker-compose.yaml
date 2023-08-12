@@ -22,27 +22,31 @@ services:
   test_spigot_1_20_1:
     build: ./1.20.1/private/spigot
     volumes:
-      - './1.20.1/private/spigot/.map/world:/minecraft-server/world'
-      - './1.20.1/private/spigot/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/private/spigot/.map/world_the_end:/minecraft-server/world_the_end'
-      - './1.20.1/private/spigot/whitelist.json:/minecraft-server/whitelist.json'
-      - './1.20.1/private/spigot/blacklist.json:/minecraft-server/blacklist.json'
-      - './1.20.1/private/spigot/ops.json:/minecraft-server/ops.json'
+      - './1.20.1/private/spigot/.map/world:/spigot-server/world'
+      - './1.20.1/private/spigot/.map/world_nether:/spigot-server/world_nether'
+      - './1.20.1/private/spigot/.map/world_the_end:/spigot-server/world_the_end'
+      - './1.20.1/private/spigot/.properties/whitelist.json:/spigot-server/whitelist.json'
+      #- './1.20.1/private/spigot/.properties/blacklist.json:/spigot-server/blacklist.json'
+      #- './1.20.1/private/spigot/.properties/ops.json:/spigot-server/ops.json'
     networks:
       - private
     ports:
-      - "25566:25566"
+      - "25567:25566"
+    stdin_open: true
+    tty: true
 
 # Public Spigot API server
   lavalawless_spigot_1_20_1:
     build: 1.20.1/public/anarchy.lavalawsless.com
     volumes:
-      - './1.20.1/public/anarchy.lavalawless.com/.map/world:/minecraft-server/world'
-      - './1.20.1/public/anarchy.lavalawless.com/.map/world_nether:/minecraft-server/world_nether'
-      - './1.20.1/public/anarchy.lavalawless.com/.map/world_the_end:/minecraft-server/world_the_end'
-      - './1.20.1/public/anarchy.lavalawless.com/blacklist.json:/minecraft-server/blacklist.json'
-      - './1.20.1/public/anarchy.lavalawless.com/ops.json:/minecraft-server/ops.json'
+      - './1.20.1/public/anarchy.lavalawless.com/.map/world:/spigot-server/world'
+      - './1.20.1/public/anarchy.lavalawless.com/.map/world_nether:/spigot-server/world_nether'
+      - './1.20.1/public/anarchy.lavalawless.com/.map/world_the_end:/spigot-server/world_the_end'
+      #- './1.20.1/public/anarchy.lavalawless.com/.properties/blacklist.json:/spigot-server/blacklist.json'
+      #- './1.20.1/public/anarchy.lavalawless.com/.properties/ops.json:/spigot-server/ops.json'
     networks:
       - public_1
     ports:
       - "25565:25565"
+    stdin_open: true
+    tty: true
